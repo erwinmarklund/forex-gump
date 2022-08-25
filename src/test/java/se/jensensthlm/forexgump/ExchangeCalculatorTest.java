@@ -37,6 +37,7 @@ public class ExchangeCalculatorTest {
     }
 
     @Test
+
     @DisplayName("Buying same currency as reference throws exception")
     public void TestBuyException(){
 
