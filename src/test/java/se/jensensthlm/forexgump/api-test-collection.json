@@ -1,0 +1,34 @@
+{
+  "info": {
+    "_postman_id": "ce4ed3aa-5c52-4952-80ef-ee8abbc9d29c",
+    "name": "forex-gump",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "21132448"
+  },
+  "item": [
+    {
+      "name": "Buy 100 GBP",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Sell 100 USD",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "sell usd",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
