@@ -31,10 +31,12 @@ public class ExchangeCalculatorTest {
         var amount = 100.0;
         var rate = 10.0;
 
+        when(exchangeProvider.get("SEK", targetCurrency))
+                .thenReturn(new ExchangeDetails("SEK", targetCurrency, rate));
 
-        // Given the exchange rate 10 SEK / GBP
-        // To buy 100 GBP
-        // You need to pay 1000 SE
+        var expectedPriceInSek = 1000.0;
+        var actualPriceInSek = exchangeCalculator.calculateBuy(targetCurrency, amount);
+        assertEquals(expectedPriceInSek, actualPriceInSek);
     }
 
     @Test
