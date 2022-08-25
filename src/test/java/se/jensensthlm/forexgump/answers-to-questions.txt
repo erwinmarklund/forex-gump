@@ -1,8 +1,19 @@
-1-
 
+1- Does the API respond with the proper codes in the three tested cases? Why?
+Answer:
+Two of the tests were sucessful as 200 which means "success".
 
-2-
+One test gave a different code because the expected status code is 200
+but we got 500 which is a response you get for unhandled exceptions.
+ Code 400 is what is expected and this should be the way to go in this case.
 
+2- Do Dtos need to be tested?
+Answer:
+No.
+Why?
+Unit tests are not necessary for DTOs, getters and setters should
+only be tested when they contain complex logic.
 
-
-3-
+3- Criticize the application. Reveal the weak parts you can spot and propose ideas to improve them.
+For access to the application during deployment, team members have to use the same account
+on github otherwise.
