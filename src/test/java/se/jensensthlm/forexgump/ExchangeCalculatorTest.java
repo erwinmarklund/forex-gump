@@ -27,15 +27,12 @@ public class ExchangeCalculatorTest {
     @Test
     @DisplayName("Buy 100 GBP")
     public void TestBuy() {
-        var targetCurrency = "GBP";
-        var amount = 100.0;
-        var rate = 10.0;
 
-        when(exchangeProvider.get("SEK", targetCurrency))
-                .thenReturn(new ExchangeDetails("SEK", targetCurrency, rate));
+        when(exchangeProvider.get(REFERENCECURRENCY, TARGETCURRENCY))
+                .thenReturn(new ExchangeDetails(REFERENCECURRENCY, TARGETCURRENCY, RATE));
 
         var expectedPriceInSek = 1000.0;
-        var actualPriceInSek = exchangeCalculator.calculateBuy(targetCurrency, amount);
+        var actualPriceInSek = exchangeCalculator.calculateBuy(TARGETCURRENCY, AMOUNT);
         assertEquals(expectedPriceInSek, actualPriceInSek);
     }
 
@@ -48,13 +45,11 @@ public class ExchangeCalculatorTest {
     @Test
     @DisplayName("Sell 100 SEK to get GBP")
     public void TestSell() {
-        var targetCurrency = "GBP";
-        var amount = 100.0;
-        var rate = 10.0;
-        when(exchangeProvider.get( "SEK", targetCurrency))
-                .thenReturn(new ExchangeDetails( "SEK", targetCurrency, rate));
-        var exceptedPriceInSek = amount / rate;
-        var actualPriceInSek = exchangeCalculator.calculateSell(targetCurrency, amount);
+
+        when(exchangeProvider.get( REFERENCECURRENCY, TARGETCURRENCY))
+                .thenReturn(new ExchangeDetails( REFERENCECURRENCY, TARGETCURRENCY, RATE));
+        var exceptedPriceInSek = AMOUNT / RATE;
+        var actualPriceInSek = exchangeCalculator.calculateSell(TARGETCURRENCY, AMOUNT);
         assertEquals(exceptedPriceInSek, actualPriceInSek);
         // Given the exchange rate 10 SEK / GBP
         // Selling 100 SEK
