@@ -1,5 +1,6 @@
 package se.jensensthlm.forexgump;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -40,7 +41,10 @@ public class ExchangeCalculatorTest {
 
     @DisplayName("Buying same currency as reference throws exception")
     public void TestBuyException(){
+        when(exchangeProvider.get(REFERENCECURRENCY, REFERENCECURRENCY))
+                .thenReturn(new ExchangeDetails(REFERENCECURRENCY, REFERENCECURRENCY, RATE));
 
+        Assertions.assertThrows(IllegalArgumentException.class, ()-> exchangeCalculator.calculateBuy(REFERENCECURRENCY,AMOUNT));
     }
 
     @Test
@@ -52,26 +56,14 @@ public class ExchangeCalculatorTest {
         var exceptedPriceInSek = AMOUNT / RATE;
         var actualPriceInSek = exchangeCalculator.calculateSell(TARGETCURRENCY, AMOUNT);
         assertEquals(exceptedPriceInSek, actualPriceInSek);
-        // Given the exchange rate 10 SEK / GBP
-        // Selling 100 SEK
-        // Gives you 10 GBP
     }
 
     @Test
     @DisplayName("Selling same currency as reference throws exception")
     public void TestSellException(){
+        when(exchangeProvider.get(REFERENCECURRENCY, REFERENCECURRENCY))
+                .thenReturn(new ExchangeDetails(REFERENCECURRENCY, REFERENCECURRENCY, RATE));
 
-    }
-
-    @Test
-    @DisplayName("Requesting exchange rate provides the correct rate for given currency pair")
-    public void TestGetExchangeRate(){
-
-    }
-
-    @Test
-    @DisplayName("Requesting exchange rate between the same currency throws an exception")
-    public void TestExchangeRateException(){
-
+        Assertions.assertThrows(IllegalArgumentException.class, ()-> exchangeCalculator.calculateSell(REFERENCECURRENCY,AMOUNT));
     }
 }
