@@ -13,7 +13,16 @@ No.
 Why?
 Unit tests are not necessary for DTOs, getters and setters should
 only be tested when they contain complex logic.
+The DTOs would be used by services that would still be tested indirectly.
+If your data has no behaviour.
 
 3- Criticize the application. Reveal the weak parts you can spot and propose ideas to improve them.
-For access to the application during deployment, team members have to use the same account
-on github otherwise.
+
+Answer:
+It's easier to consume an existing API than to create one.
+Some of the weak points of the application are:
+We had some results that revealed a code of 500 instead of 400.
+There was no difference in the outcome of the sell and buy functions in certain instances.
+
+
+
