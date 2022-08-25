@@ -27,9 +27,14 @@ public class ExchangeCalculatorTest {
     @Test
     @DisplayName("Buy 100 GBP")
     public void TestBuy() {
+        var targetCurrency = "GBP";
+        var amount = 100.0;
+        var rate = 10.0;
+
+
         // Given the exchange rate 10 SEK / GBP
         // To buy 100 GBP
-        // You need to pay 1000 SEK
+        // You need to pay 1000 SE
     }
 
     @Test
@@ -41,6 +46,14 @@ public class ExchangeCalculatorTest {
     @Test
     @DisplayName("Sell 100 SEK to get GBP")
     public void TestSell() {
+        var targetCurrency = "GBP";
+        var amount = 100.0;
+        var rate = 10.0;
+        when(exchangeProvider.get( "SEK", targetCurrency))
+                .thenReturn(new ExchangeDetails( "SEK", targetCurrency, rate));
+        var exceptedPriceInSek = amount / rate;
+        var actualPriceInSek = exchangeCalculator.calculateSell(targetCurrency, amount);
+        assertEquals(exceptedPriceInSek, actualPriceInSek);
         // Given the exchange rate 10 SEK / GBP
         // Selling 100 SEK
         // Gives you 10 GBP
